@@ -75,7 +75,7 @@ class DepartmentsUpdateView(UpdateView):
 class DepartmentsDetailView(DetailView):
     model = Department
     template_name = 'department/detail.html'
-    context_object_name = "departments"
+    context_object_name = "department"
 
 
 def departments_delete(request, pk):
