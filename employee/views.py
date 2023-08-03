@@ -19,7 +19,7 @@ class IndexView(TemplateView):
 
 class EmployeesListView(ListView):
     model = Employee
-    template_name = "employee_html/list.html"
+    template_name = "employee/list.html"
     context_object_name = "employees"
 
 
@@ -75,7 +75,7 @@ class EmployeesListView(ListView):
 class EmployeesCreateView(CreateView):
     model = Employee
     form_class = EmployeeForm
-    template_name = "employee_html/form.html"
+    template_name = "employee/form.html"
     success_url = "/employees/list/"
 
 
@@ -84,12 +84,12 @@ class EmployeesCreateView(CreateView):
 class EmployeesUpdateView(UpdateView):
     model = Employee
     form_class = EmployeeForm
-    template_name = "employee_html/form.html"
+    template_name = "employee/form.html"
     success_url = "/employees/list/"
 
 class EmployeesDetailView(DetailView):
     model = Employee
-    template_name = "employee_html/detail.html"
+    template_name = "employee/detail.html"
     context_object_name = "employees"
 
 def employees_delete(request,pk):

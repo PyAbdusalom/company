@@ -19,7 +19,7 @@ class IndexView(TemplateView):
 
 class DepartmentsListView(ListView):
     model = Department
-    template_name = 'department_html/list.html'
+    template_name = 'department/list.html'
     context_object_name = "departments"
 
     def get_queryset(self):
@@ -62,19 +62,19 @@ class DepartmentsCreateView(CreateView):
     model = Department
     form_class = DepartmentForm
     success_url = '/departments/list/'
-    template_name = 'department_html/form.html'
+    template_name = 'department/form.html'
 
 
 class DepartmentsUpdateView(UpdateView):
     model = Department
     form_class = DepartmentForm
     success_url = '/departments/list'
-    template_name = 'department_html/form.html'
+    template_name = 'department/form.html'
 
 
 class DepartmentsDetailView(DetailView):
     model = Department
-    template_name = 'department_html/detail.html'
+    template_name = 'department/detail.html'
     context_object_name = "departments"
 
 

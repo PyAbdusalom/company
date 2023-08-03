@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import(
+from django.views.generic import (
     TemplateView,
     ListView,
     DetailView,
@@ -12,17 +12,14 @@ from profession.models import Profession
 from profession.forms import ProfessionForm
 
 
-
-
 class IndexView(TemplateView):
     template_name = "index.html"
 
 
 class ProfessionsListView(ListView):
     model = Profession
-    template_name = "profession_html/list.html"
+    template_name = "profession/list.html"
     context_object_name = "professions"
-
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -32,19 +29,19 @@ class ProfessionsListView(ListView):
 
         if search:
             queryset = queryset.filter(
-                Q(name__contains = search) | Q(description__contains = search)
+                Q(name__contains=search) | Q(description__contains=search)
             )
         if salary:
             queryset = queryset.filter(
-                salary = salary
+                salary=salary
             )
         if profession_id:
             queryset = queryset.filter(
-                profession_id = profession_id
+                profession_id=profession_id
             )
         return queryset
 
-    def get_context_data(self,**kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context["professions"] = Profession.objects.all()
@@ -60,24 +57,28 @@ class ProfessionsListView(ListView):
 
         return context
 
+
 class ProfessionsCreateView(CreateView):
     model = Profession
     form_class = ProfessionForm
-    template_name = "profession_html/form.html"
+    template_name = "profession/form.html"
     success_url = "/professions/list/"
+
 
 class ProfessionsUpdateView(UpdateView):
     model = Profession
     form_class = ProfessionForm
-    template_name = "profession_html/form.html"
+    template_name = "profession/form.html"
     success_url = "/professions/list/"
+
 
 class ProfessionsDetailView(DetailView):
     model = Profession
-    template_name = "profession_html/detail.html"
+    template_name = "profession/detail.html"
     success_url = "/professions/list/"
 
-def professions_delete(request,pk):
-    professions = get_object_or_404(Profession,pk=pk)
+
+def professions_delete(request, pk):
+    professions = get_object_or_404(Profession, pk=pk)
     professions.delete()
     return redirect('professions-list')
