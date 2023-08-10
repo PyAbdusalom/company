@@ -9,17 +9,14 @@ class GenderChoices(models.TextChoices):
     FEMALE = ("female", "Female")
 
 
-
-
-
 class Employee(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=50,unique=True)
+    phone = models.CharField(max_length=50, unique=True)
     age = models.IntegerField()
-    gender = models.CharField(max_length=50,choices=GenderChoices.choices)
-    profession = models.ForeignKey(Profession,related_name="employee_profession",on_delete=models.CASCADE)
-    department = models.ForeignKey(Department,related_name="employee_department",on_delete=models.CASCADE)
+    gender = models.CharField(max_length=50, choices=GenderChoices.choices)
+    profession = models.ForeignKey(Profession, related_name="employee_profession", on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, related_name="employee_department", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
